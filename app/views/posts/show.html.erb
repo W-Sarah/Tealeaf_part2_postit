@@ -1,0 +1,9 @@
+<% @post.categories.each do |category| %>
+<span class="badge"><%= category.name %></span>
+<% end %>
+
+<h3 = "lead"><%= @post.title %></h3>
+
+<p><%= @post.description %></p>
+
+<p>Created by <%= @post.user.username %> on <%= @post.created_at %>
