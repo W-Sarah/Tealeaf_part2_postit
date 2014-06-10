@@ -1,0 +1,17 @@
+<div class = "row">
+
+  <div class = "span8 well" id="box">
+
+    <p><%= render post.categories %></p>
+
+    <h4><%= link_to post.title, post.url %></h4>
+    <p><%= post.description%></br></p>
+
+    <p>
+        <span class="quiet"><em> Created by <%= post.user.username %> at <%= post.created_at%></em></span></br>
+      <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+    </br>
+    </p>
+     <%= link_to("Edit post", edit_post_path(post)) %>
+  </div>
+</div>

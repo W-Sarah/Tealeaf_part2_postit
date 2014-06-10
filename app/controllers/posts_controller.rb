@@ -6,6 +6,7 @@ before_action :set_post, only: [:show, :edit, :update]
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -14,6 +15,7 @@ before_action :set_post, only: [:show, :edit, :update]
 
   def create
     @post = Post.new(post_params)
+    @post.user = User.first #to do : change once we have user sign up
 
     if @post.save
       flash[:notice] = "Post successfully created"

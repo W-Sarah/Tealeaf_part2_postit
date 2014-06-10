@@ -1,31 +1,6 @@
-<h2>Welcome!</h2>
-
-<h3>All posts</h3>
+<%= render 'shared/content_title', title: 'All Posts' %>
 
 <% @posts.each do |post| %>
-
-<div class = "row">
-
-  <div class = "span8 well" id="box">
-
-    <% post.categories.each do |category| %>
-    <span class="badge"><%= category.name %></span>
-    <% end %>
-
-    <h4><%= link_to post.title, post.url %></h4>
-    <p><%= post.description%></br></p>
-
-    <p>
-      <% if post.user.blank? %>
-        <span class="quiet"><em> Created at <%= post.created_at%></em></span> </br>
-      <% else %>
-        <span class="quiet"><em> Created by <%= post.user.username %> at <%= post.created_at%></em></span></br>
-      <% end %>
-      <%= link_to("#{post.comments.size} comments", post_path(post)) %>
-    </br>
-    </p>
-     <%= link_to("Edit post", edit_post_path(post)) %>
-  </div>
-</div>
+<%= render 'post', post: post %>
 <% end %>
 

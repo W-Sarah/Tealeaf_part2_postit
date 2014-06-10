@@ -1,9 +1,17 @@
-<% @post.categories.each do |category| %>
-<span class="badge"><%= category.name %></span>
-<% end %>
+<p><%= render @post.categories %></p>
+<%= render 'shared/content_title', title: @post.title %>
 
-<h3 = "lead"><%= @post.title %></h3>
+<p><%= @post.description %>
+<hr>
+</p>
 
-<p><%= @post.description %></p>
+<p>Leave a comment
+  <%= render 'shared/form_error', form: @comment %>
+  <%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body, rows: 5%>
+  </br>
+  <%= f.submit 'Submit comment', class: 'btn btn-primary' %>
+  <% end %>
+</p>
 
-<p>Created by <%= @post.user.username %> on <%= @post.created_at %>
+
