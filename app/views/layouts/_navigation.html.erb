@@ -19,7 +19,9 @@
     </div>
   </li>
   <li>
-    <%= link_to 'New Post', new_post_path %>
+    <div class="btn-group">
+    <%= link_to 'New Post', new_post_path, class: "btn btn-success" %>
+    </div>
   </li>
   <li>
     <div class="btn-group">
@@ -49,10 +51,14 @@
     </div>
   </li>
   <li>
-    <%= link_to 'Register', register_path %>
+    <div class="btn-group">
+    <%= link_to 'Register', register_path, class: "btn btn-success" %>
+    </div>
   </li>
   <li>
-    <%= link_to 'Log in', login_path %>
+    <div class="btn-group">
+    <%= link_to 'Log in', login_path, class: "btn btn-info" %>
+    </div>
   </li>
   <% end %>
 </ul>
