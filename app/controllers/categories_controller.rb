@@ -1,8 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :require_login, onlye: [:new, :create]
 
-  def index
-    @categories = Category.all
-  end
 
   def show
     @category = Category.find(params[:id])
