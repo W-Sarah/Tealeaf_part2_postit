@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_same_user, only: [:edit, :update]
 
   def show
+    @user = User.find(params[:id])
     end
 
   def new
@@ -20,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
@@ -29,6 +31,14 @@ class UsersController < ApplicationController
       redirect_to users_path(@user)
     else
       render :edit
+    end
+  end
+
+  private
+    def require_same_user
+    unless current_user = @user
+      flash[:error] = "You can't perform this action"
+      redirect_to root_path
     end
   end
 
