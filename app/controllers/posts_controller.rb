@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :edit, :update]
 
+
   def index
     @posts = Post.all
   end
@@ -15,7 +16,7 @@ before_action :set_post, only: [:show, :edit, :update]
 
   def create
     @post = Post.new(post_params)
-    @post.user = User.first #to do : change once we have user sign up
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Post successfully created"
@@ -40,7 +41,7 @@ before_action :set_post, only: [:show, :edit, :update]
 
   private
   def post_params
-    params.require(:post).permit!
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def set_post

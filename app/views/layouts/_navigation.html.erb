@@ -2,10 +2,8 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'New Post', new_post_path %>
-  </li>
-  <li>
+  <% if logged_in? %>
+    <li>
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
       Categories
@@ -20,4 +18,31 @@
       </ul>
     </div>
   </li>
+  <li>
+    <%= link_to 'New Post', new_post_path %>
+  </li>
+  <li>
+    <%= link_to 'Log out', logout_path %>
+  </li>
+  <% else %>
+    <li>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Categories
+      <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+      <% Category.all.each do |category| %>
+        <li><%= link_to category.name, category_path(category) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <%= link_to 'Register', register_path %>
+  </li>
+  <li>
+    <%= link_to 'Log in', login_path %>
+  </li>
+  <% end %>
 </ul>

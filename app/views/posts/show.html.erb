@@ -1,5 +1,7 @@
 <p><%= render @post.categories %></p>
+<% if logged_in? %>
 <p class='edit'><%= link_to 'Edit this post', edit_post_path(@post) %></p>
+<% end %>
 <%= render 'shared/content_title', title: @post.title %>
 
 
@@ -8,6 +10,7 @@
 <hr>
 </p>
 
+<% if logged_in? %>
 <p>Leave a comment
   <%= render 'shared/form_error', form: @comment %>
   <%= form_for [@post, @comment] do |f| %>
@@ -15,6 +18,7 @@
   </br>
   <%= f.submit 'Submit comment', class: 'btn btn-primary' %>
   <% end %>
+<% end %>
 </p>
 
 

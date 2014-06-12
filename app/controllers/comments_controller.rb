@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.new(params.require(:comment).permit(:body))
     @comment.post = @post
-    @comment.user = User.first #to change once we have login
+    @comment.user = current_user
 
     if @comment.save
       flash[:notice] = "Comment successfully added"
