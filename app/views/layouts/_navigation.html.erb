@@ -22,7 +22,17 @@
     <%= link_to 'New Post', new_post_path %>
   </li>
   <li>
-    <%= link_to 'Log out', logout_path %>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      <%= current_user.username %>
+      <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "View profile", user_path(current_user.id) %></li>
+        <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+        <li><%= link_to "Log out", logout_path %></li>
+      </ul>
+    </div>
   </li>
   <% else %>
     <li>

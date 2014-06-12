@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  def show
+    end
 
   def new
     @user = User.new
@@ -16,5 +18,19 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    if @user.update(params.require(:user).permit(:username, :password))
+      flash[:notice] = "Profile updated"
+      redirect_to users_path(@user)
+    else
+      render :edit
+    end
+  end
+
 
 end

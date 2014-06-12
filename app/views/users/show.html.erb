@@ -1,0 +1,30 @@
+<%= render 'shared/content_title', title: "Profile: #{current_user.username}" %>
+
+<div class = "well">
+  <strong>Username:</strong> <%= current_user.username %>
+</div>
+
+<ul class="nav nav-tabs">
+  <li><a href="#posts" data-toggle="tab">Posts (<%= current_user.posts.size%>)</a></li>
+  <li><a href="#comments" data-toggle="tab">Comments (<%= current_user.comments.size%>)</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="posts">
+    <% if current_user.posts.size > 0 %>
+      <% current_user.posts.each do |post| %>
+      <%= render 'posts/post', post: post %>
+      <% end %>
+    <% else %>
+    <p> You have not written any post yet. <%= link_to "Write a post now!", new_post_path %></p>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="comments">
+    <% if current_user.comments.size > 0 %>
+      <%= render 'comments', object: current_user%>
+    <% else %>
+      <p> You have not written any comment yet.</p>
+    <% end %>
+  </div>
+</div>
+ 
