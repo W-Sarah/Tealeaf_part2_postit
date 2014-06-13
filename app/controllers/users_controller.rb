@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   private
     def require_same_user
-    unless current_user = @user
+    unless current_user = User.find(params[:id])
       flash[:error] = "You can't perform this action"
       redirect_to root_path
     end
