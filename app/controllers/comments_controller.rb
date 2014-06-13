@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :require_login
 
 
+
   def create
     @post = Post.find(params[:post_id])
     @comment = Comment.new(params.require(:comment).permit(:body))

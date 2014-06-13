@@ -1,6 +1,6 @@
 <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
 
-<div class = "well">
+<div class = "well box">
   <strong>Username:</strong> <%= @user.username %>
 </div>
 
@@ -20,8 +20,8 @@
     <% end %>
   </div>
   <div class="tab-pane" id="comments">
-    <% if current_user.comments.size > 0 %>
-      <%= render 'comments/comments', object: @user%>
+    <% if @user.comments.size > 0 %>
+      <%= render 'comments/comments', object: @user, show_post: true%>
     <% else %>
       <p> You have not written any comment yet.</p>
     <% end %>
