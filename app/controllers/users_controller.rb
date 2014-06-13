@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:username, :password))
       flash[:notice] = "Profile updated"
-      redirect_to users_path(@user)
+      redirect_to user_path(@user)
     else
       render :edit
     end
