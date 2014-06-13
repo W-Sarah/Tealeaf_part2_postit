@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :edit, :update]
+before_action :set_post, only: [:show, :edit, :update, :vote]
 before_action :require_login, except: [:show, :index]
 
   def index
@@ -37,6 +37,18 @@ before_action :require_login, except: [:show, :index]
     else
       render :edit
     end
+  end
+
+  def vote
+    @vote = Vote.create(user_id: current_user.id, voteable_type: "Post", voteable_id: @post.id, vote: params[:vote])
+
+    if @vote.valid?
+      flash[:notice] = "Thanks for voting."
+    else
+      flash[:error] = "You can only vote on a post once"
+    end
+    redirect_to :back
+
   end
 
   private

@@ -42,7 +42,7 @@ div.comment_votes {
   padding: 10px;
 }
 
-#box {
+.box {
   background-color: #DCFAF1;
 }
 
@@ -53,5 +53,9 @@ div.comment_votes {
 .btn-group {
   margin-left: 7px;
   margin-right: 7px;
+}
+
+.vote {
+  text-align: center
 }
 

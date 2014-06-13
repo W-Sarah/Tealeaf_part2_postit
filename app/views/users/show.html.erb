@@ -21,7 +21,7 @@
   </div>
   <div class="tab-pane" id="comments">
     <% if current_user.comments.size > 0 %>
-      <%= render 'comments', object: @user%>
+      <%= render 'comments/comments', object: @user%>
     <% else %>
       <p> You have not written any comment yet.</p>
     <% end %>

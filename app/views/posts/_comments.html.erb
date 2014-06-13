@@ -1,6 +1,0 @@
-<% object.comments.each do |comment| %>
-  <div class = 'well'>
-    <p><em>"<%= comment.body%>"</em></p>
-    <p class="quiet">Posted by <%= comment.user.username %> on <%= date_fix(comment.created_at) %></p>
-  </div>  
-<% end %>

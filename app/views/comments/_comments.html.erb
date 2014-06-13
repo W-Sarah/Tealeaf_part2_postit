@@ -1,0 +1,21 @@
+<% object.comments.each do |comment| %>
+<div class='row'>
+  <div class='span1 well'>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(object, comment, vote: true), method: 'post' do %>
+        <p class="vote"><i class="icon-arrow-up"></i></p>
+      <% end %>
+    <% end %>
+    <p class="vote"><%= comment.total_votes %> votes</p>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(object, comment, vote: false), method: 'post' do %>
+        <p class="vote"><i class="icon-arrow-down"></i></p>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='span9 well'>
+    <p><em>"<%= comment.body%>"</em> on <%= link_to comment.post.title, post_path(comment.post.id)%></p>
+    <p class="quiet">Posted by <%= link_to comment.user.username, user_path(comment.user) %> on <%= date_fix(comment.created_at) %></p>
+  </div>  
+</div>
+<% end %>

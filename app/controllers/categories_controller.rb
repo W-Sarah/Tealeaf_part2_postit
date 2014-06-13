@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :require_login, onlye: [:new, :create]
+  before_action :require_login, only: [:new, :create]
 
 
   def show

@@ -1,6 +1,0 @@
-<% object.comments.each do |comment| %>
-  <div class = 'well'>
-    <p><em>"<%= comment.body%>"</em> on <%= link_to comment.post.title, post_path(comment.post.id)%></p>
-    <p class="quiet">Posted by <%= comment.user.username %> on <%= date_fix(comment.created_at) %></p>
-  </div>  
-<% end %>
