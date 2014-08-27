@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def vote
     @comment = Comment.find(params[:id])
-    @vote = Vote.create(user_id: current_user.id, voteable: @comment, voteable_id: @comment.id, vote: params[:vote])
+    @vote = Vote.create(user_id: current_user.id, voteable_type: "Comment", voteable_id: @comment.id, vote: params[:vote])
 
     respond_to do |format|
       format.html do
