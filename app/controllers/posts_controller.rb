@@ -64,7 +64,7 @@ before_action :require_login, except: [:show, :index]
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by slug: params[:id]
   end
 
 end

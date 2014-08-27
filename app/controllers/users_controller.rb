@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @user = User.find(params[:id])
     end
 
   def new
@@ -22,11 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:username, :password))
       flash[:notice] = "Profile updated"
       redirect_to user_path(@user)
@@ -35,9 +33,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_user
+    @user = User.find_by slug: params[:id]
+  end
+
   private
     def require_same_user
-    unless current_user = User.find(params[:id])
+    unless current_user != @user
       flash[:error] = "You can't perform this action"
       redirect_to root_path
     end
