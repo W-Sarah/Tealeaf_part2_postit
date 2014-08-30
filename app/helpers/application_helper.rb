@@ -7,6 +7,9 @@ module ApplicationHelper
   end
 
   def date_fix(date)
-    date.strftime("%a %d %b %y, at %I:%M %p")
+    if logged_in? && !current_user.time_zone.blank?
+      date = date.in_time_zone(current_user.time_zone)
+    end
+    date.strftime("%a %d %b %y, at %I:%M %p %Z")
   end
 end

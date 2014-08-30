@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
+
   def show
     end
 
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(params.require(:user).permit(:username, :password))
+    if @user.update(params.require(:user).permit(:username, :password, :time_zone))
       flash[:notice] = "Profile updated"
       redirect_to user_path(@user)
     else
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by slug: params[:id]
   end
+
 
   private
     def require_same_user

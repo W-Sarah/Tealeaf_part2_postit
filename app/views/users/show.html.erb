@@ -1,7 +1,8 @@
 <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
 
 <div class = "well box">
-  <strong>Username:</strong> <%= @user.username %>
+  <strong>Username:</strong> <%= @user.username %></br>
+  <strong>Time zone:</strong> <%= @user.time_zone %>
 </div>
 
 <ul class="nav nav-tabs">

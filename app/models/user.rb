@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Sluggable
   has_many :posts
   has_many :comments
   has_many :votes
@@ -8,14 +9,14 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 4}, on: :create
   validates :username, presence: true, uniqueness: true
 
-  before_save :generate_slug
+  sluggable_column :username
 
-  def generate_slug
-    self.slug = self.username.gsub(" ","-").downcase
+  def admin?
+    self.role == 'admin'
   end
 
-  def to_param
-    self.slug
+  def moderator?
+    self.role == 'moderator'
   end
 
 end

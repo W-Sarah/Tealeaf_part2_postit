@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :edit, :update, :vote]
 before_action :require_login, except: [:show, :index]
+before_action :require_admin_or_creator, only: [:edit, :update]
 
   def index
     @posts = Post.all
@@ -36,6 +37,12 @@ before_action :require_login, except: [:show, :index]
       redirect_to posts_path
     else
       render :edit
+    end
+  end
+
+  def require_admin_or_creator
+    unless logged_in? and (current_user.id == @post.user_id or current_user.admin?)
+      access_denied
     end
   end
 
