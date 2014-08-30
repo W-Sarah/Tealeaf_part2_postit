@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:username, :password))
+    @user = User.new(params.require(:user).permit(:username, :password, :time_zone))
 
     if @user.save
       flash[:notice] = "You successfully registered"
